@@ -46,3 +46,18 @@ Usage
     dyndns.on('error', function (err) {
         // Update at services failed
     });
+
+Docker usage
+-----
+
+# Build
+
+```
+sudo docker build -t dyndns .
+```
+
+# Run
+
+```
+sudo docker run --restart unless-stopped dyndns
+```
