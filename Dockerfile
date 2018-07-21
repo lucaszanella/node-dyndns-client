@@ -23,6 +23,7 @@ RUN touch config.txt \
 
 COPY lib /home/lib
 COPY client.js /home/client.js 
+COPY package.json /home/package.json
 COPY index.js /home/index.js 
 
 

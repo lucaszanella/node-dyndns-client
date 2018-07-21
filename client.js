@@ -11,7 +11,7 @@ tokensList.forEach(function(token) {
     tokens[tokenName] = tokenValue;
 });
 
-var DynDNSClient = require('./lib/dyndns-client.js'),
+var DynDNSClient = require('./lib/dyndns-client'),
 	dyndns = new DynDNSClient({
 		url                 : "http://members.dyndns.org/nic/update", //TODO: change to tokens[url] and put default value
 		hostname            : [
