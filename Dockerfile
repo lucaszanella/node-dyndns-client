@@ -3,6 +3,7 @@ MAINTAINER Lucas Zanella (me@lucaszanella.com)
 
 WORKDIR /home
 
+ARG URL=""
 ARG HOSTNAME=""
 ARG USERNAME=""
 ARG PASSWORD=""
@@ -11,6 +12,7 @@ ARG INTERFACE=""
 ARG CHECK=""
 
 RUN touch config.txt \
+    && echo url=$URL >> config.txt \
     && echo hostname=$HOSTNAME >> config.txt \
     && echo username=$USERNAME >> config.txt \
     && echo password=$PASSWORD >> config.txt \
@@ -21,5 +23,7 @@ RUN touch config.txt \
 
 COPY lib /home/lib
 COPY client.js /home/client.js 
+COPY index.js /home/index.js 
 
-ENTRYPOINT ["node", "client.js"]
+
+ENTRYPOINT ["node", "/home/client.js"]
