@@ -19,9 +19,9 @@ var DynDNSClient = require('./lib/dyndns-client'),
 		],
 		username            : tokens["username"],
 		password            : tokens["password"],
-		network_interface   : tokens["interface"],
-		protocol            : tokens["protocol"],
-		check               : tokens["check"]
+		network_interface   : tokens["interface"] || undefined,
+		protocol            : tokens["protocol"] || "ipv4",
+		check               : tokens["check"] || "60"
 	});
 
 dyndns.on('IP:changed', function (newIP, oldIP) {
