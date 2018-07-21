@@ -59,5 +59,6 @@ sudo docker build -t dyndns .
 # Run
 
 ```
-sudo docker run --restart unless-stopped dyndns
+sudo docker run --rm -e HOST="myhost.dyndns.org" -e USERNAME="my_user" -e PASSWORD="my_password" dyndns
+#sudo docker run --restart unless-stopped dyndns
 ```

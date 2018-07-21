@@ -11,17 +11,23 @@ tokensList.forEach(function(token) {
     tokens[tokenName] = tokenValue;
 });
 
+console.log('Starting Dynamic DNS Updater...');
+console.log( process.env);
+console.log('host:' + process.env.HOST);
+console.log('username:' + process.env.USERNAME);
+
+
 var DynDNSClient = require('./lib/dyndns-client'),
 	dyndns = new DynDNSClient({
 		url                 : "http://members.dyndns.org/nic/update", //TODO: change to tokens[url] and put default value
 		hostname            : [
-			tokens["hostname"]
+			tokens["hostname"] || process.env.HOSTNAME
 		],
-		username            : tokens["username"],
-		password            : tokens["password"],
-		network_interface   : tokens["interface"] || undefined,
-		protocol            : tokens["protocol"] || "ipv4",
-		check               : tokens["check"] || "60"
+		username            : tokens["username"] || process.env.USERNAME,
+		password            : tokens["password"] || process.env.PASSWORD,
+		network_interface   : tokens["interface"] || process.env.INTERFACE || undefined,
+		protocol            : tokens["protocol"] || process.env.PROTOCOL || "ipv4",
+        check               : tokens["check"] || process.env.CHECK || "60"
 	});
 
 dyndns.on('IP:changed', function (newIP, oldIP) {
